@@ -27,3 +27,8 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
+
+
+gem 'devise'
+gem 'cancan'
+gem 'faye'

@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @catalog_object.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @catalog_object.description %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @catalog_object.type %>
+</p>
+
+<p>
+  <b>Current hp:</b>
+  <%= @catalog_object.current_hp %>
+</p>
+
+<p>
+  <b>Max hp:</b>
+  <%= @catalog_object.max_hp %>
+</p>
+
+<p>
+  <b>Current velocity:</b>
+  <%= @catalog_object.current_velocity %>
+</p>
+
+<p>
+  <b>Max velocity:</b>
+  <%= @catalog_object.max_velocity %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%= @catalog_object.position %>
+</p>
+
+<p>
+  <b>Radius:</b>
+  <%= @catalog_object.radius %>
+</p>
+
+<p>
+  <b>Max cargo:</b>
+  <%= @catalog_object.max_cargo %>
+</p>
+
+<p>
+  <b>Dockable:</b>
+  <%= @catalog_object.dockable %>
+</p>
+
+
+<%= link_to 'Edit', edit_catalog_object_path(@catalog_object) %> |
+<%= link_to 'Back', catalog_objects_path %>

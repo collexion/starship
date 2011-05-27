@@ -1,0 +1,43 @@
+<h1>Listing catalog_objects</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Type</th>
+    <th>Current hp</th>
+    <th>Max hp</th>
+    <th>Current velocity</th>
+    <th>Max velocity</th>
+    <th>Position</th>
+    <th>Radius</th>
+    <th>Max cargo</th>
+    <th>Dockable</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @catalog_objects.each do |catalog_object| %>
+  <tr>
+    <td><%= catalog_object.name %></td>
+    <td><%= catalog_object.description %></td>
+    <td><%= catalog_object.type %></td>
+    <td><%= catalog_object.current_hp %></td>
+    <td><%= catalog_object.max_hp %></td>
+    <td><%= catalog_object.current_velocity %></td>
+    <td><%= catalog_object.max_velocity %></td>
+    <td><%= catalog_object.position %></td>
+    <td><%= catalog_object.radius %></td>
+    <td><%= catalog_object.max_cargo %></td>
+    <td><%= catalog_object.dockable %></td>
+    <td><%= link_to 'Show', catalog_object %></td>
+    <td><%= link_to 'Edit', edit_catalog_object_path(catalog_object) %></td>
+    <td><%= link_to 'Destroy', catalog_object, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Catalog object', new_catalog_object_path %>

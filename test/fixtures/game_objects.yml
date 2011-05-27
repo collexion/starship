@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  catalog_object_id: 1
+  name: MyString
+  description: MyText
+  type: MyString
+  current_hp: 1
+  max_hp: 1
+  current_velocity: MyString
+  max_velocity: MyString
+  position: MyString
+  radius: MyString
+  max_cargo: 1
+  dockable: false
+
+two:
+  catalog_object_id: 1
+  name: MyString
+  description: MyText
+  type: MyString
+  current_hp: 1
+  max_hp: 1
+  current_velocity: MyString
+  max_velocity: MyString
+  position: MyString
+  radius: MyString
+  max_cargo: 1
+  dockable: false
