@@ -1,0 +1,48 @@
+Captain
+Engineering
+Comms
+Weapons / Navigation (helm)
+
+
+1. Enter/create session
+2. Pick remaining role
+3. Start interface & communication
+
+
+Captain (alt. Comms): 
+- Main display
+- Sees comm log once comms have opened a channel (or if no comms)
+- Sees zoomable map
+- Foreign ships visible depending on size class, distance, and tech
+- Can set beacons visible to other stations
+
+Engineering:
+- Pipes minigame, routing energy to life support/weapons/nav
+- Damage scrambles pipes
+- Radar?
+
+Comms:
+- Controls over subspace comm channels
+- Insight into comm strategies (emotion-based comm choices, escalate/de-escalate)
+- Scanners, detailed foreign ship info? 
+- Long-range scanners temporarily disable short-range?
+- Rings showing captain's beacons, drag out in that direction to scan?
+- Radar?
+
+Weapons:
+- Targeting puzzle, tap the matching shapes/numbers
+- Shield configuration, 6 sections, tap source & dest segments to transfer energy
+
+Navigation (alt. Engineering):
+- Steering by throwing energy balls at a pivoting beam that indicates heading
+- Balls have different mass/impact depending on forward speed and ship damage
+- Speed by rotary phone drag & release?
+
+
+Server
+------
+- Ship state (position, cargo, damage)
+- Enemy ship state (position, cargo, damage)
+- World state (is_engaged?, entropy level, random encounter init)
+
+
