@@ -1,0 +1,1 @@
+FAYE_TOKEN = "hello"
