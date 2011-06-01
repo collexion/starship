@@ -1,0 +1,6 @@
+- @games.each do |game|
+  = link_to game.id, game_path(game)
+  
+%br
+
+= link_to 'New Game', new_game_path
