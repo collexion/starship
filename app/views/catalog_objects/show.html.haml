@@ -1,0 +1,37 @@
+%p#notice= notice
+%p
+  %b Name:
+  = @catalog_object.name
+%p
+  %b Description:
+  = @catalog_object.description
+%p
+  %b Type:
+  = @catalog_object.type
+%p
+  %b Current hp:
+  = @catalog_object.current_hp
+%p
+  %b Max hp:
+  = @catalog_object.max_hp
+%p
+  %b Current velocity:
+  = @catalog_object.current_velocity
+%p
+  %b Max velocity:
+  = @catalog_object.max_velocity
+%p
+  %b Position:
+  = @catalog_object.position
+%p
+  %b Radius:
+  = @catalog_object.radius
+%p
+  %b Max cargo:
+  = @catalog_object.max_cargo
+%p
+  %b Dockable:
+  = @catalog_object.dockable
+= link_to 'Edit', edit_catalog_object_path(@catalog_object)
+|
+\#{link_to 'Back', catalog_objects_path}

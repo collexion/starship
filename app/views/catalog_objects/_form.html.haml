@@ -1,0 +1,55 @@
+= form_for(@catalog_object) do |f|
+  - if @catalog_object.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@catalog_object.errors.count, "error")
+        prohibited this catalog_object from being saved:
+      %ul
+        - @catalog_object.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :name
+    %br/
+    = f.text_field :name
+  .field
+    = f.label :description
+    %br/
+    = f.text_area :description
+  .field
+    = f.label :type
+    %br/
+    = f.text_field :type
+  .field
+    = f.label :current_hp
+    %br/
+    = f.number_field :current_hp
+  .field
+    = f.label :max_hp
+    %br/
+    = f.number_field :max_hp
+  .field
+    = f.label :current_velocity
+    %br/
+    = f.text_field :current_velocity
+  .field
+    = f.label :max_velocity
+    %br/
+    = f.text_field :max_velocity
+  .field
+    = f.label :position
+    %br/
+    = f.text_field :position
+  .field
+    = f.label :radius
+    %br/
+    = f.text_field :radius
+  .field
+    = f.label :max_cargo
+    %br/
+    = f.number_field :max_cargo
+  .field
+    = f.label :dockable
+    %br/
+    = f.check_box :dockable
+  .actions
+    = f.submit

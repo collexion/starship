@@ -1,0 +1,35 @@
+%h1 Listing catalog_objects
+%table
+  %tr
+    %th Name
+    %th Description
+    %th Type
+    %th Current hp
+    %th Max hp
+    %th Current velocity
+    %th Max velocity
+    %th Position
+    %th Radius
+    %th Max cargo
+    %th Dockable
+    %th
+    %th
+    %th
+  - @catalog_objects.each do |catalog_object|
+    %tr
+      %td= catalog_object.name
+      %td= catalog_object.description
+      %td= catalog_object.type
+      %td= catalog_object.current_hp
+      %td= catalog_object.max_hp
+      %td= catalog_object.current_velocity
+      %td= catalog_object.max_velocity
+      %td= catalog_object.position
+      %td= catalog_object.radius
+      %td= catalog_object.max_cargo
+      %td= catalog_object.dockable
+      %td= link_to 'Show', catalog_object
+      %td= link_to 'Edit', edit_catalog_object_path(catalog_object)
+      %td= link_to 'Destroy', catalog_object, confirm: 'Are you sure?', method: :delete
+%br/
+= link_to 'New Catalog object', new_catalog_object_path
