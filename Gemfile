@@ -28,7 +28,7 @@ group :test do
   gem 'turn', :require => false
 end
 
-
 gem 'devise'
 gem 'cancan'
 gem 'faye'
+gem 'haml'
