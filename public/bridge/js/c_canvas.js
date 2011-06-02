@@ -170,3 +170,131 @@ Crafty.c("Box", {
   },
   
 });
+
+
+
+
+/**@
+* #SwitchUI
+* @comp SwitchUI
+* Component for adding switch-like properties to a UI element
+*/
+Crafty.c( "SwitchUI", {
+  touchTarget: false,
+  _start: false,
+  _end: false,
+  _snapMargin: 1.0,
+  _orientation: false,
+  
+  init: function() {
+    this.touchTarget = Crafty.e( "2D, DOM, TouchTarget" )
+      .attach( this )
+      .bind( "touch", function( touch ) {
+        // Project touch vector onto linear switch line
+        var start = this._start;
+        var end   = this._end;
+        
+        // Clip movement to switch path
+        // (there's gotta be a better way to do this, brain's not working)
+        
+        if ( this._orientation == "horizontal" ) {
+          // Switch is horizontal-ish, use X
+          if ( start.x < touch.newX < end.x || start.x > touch.newX > end.x ) {
+            // New X between start and end, use new X and calc Y
+            this.x = touch.newX;
+            this.y = this.x * ( end.y - start.y ) / ( end.x - start.x );
+          } else if ( touch.newX <= start.x < end.x || touch.newX >= start.x > end.x ) {
+            // New X less than start, use start X/Y
+            this.x = start.x;
+            this.y = start.y;
+          } else if ( touch.newX >= end.x > start.x || touch.newX <= end.x < start.x ) {
+            // New X greater than end, use end X/Y
+            this.x = end.x;
+            this.y = end.y;
+          }
+          
+          // If switch travel is past the snap point, snap!
+          if ( Math.abs( this.x - start.x ) / Math.abs( end.x - start.x ) < this._snapMargin ) {
+            // To the beginning
+            this.x = start.x;
+            this.y = start.y;
+          } else if ( Math.abs( this.x - end.x ) / Math.abs( end.x - start.x ) < this._snapMargin ) {
+            // To the end
+            this.x = end.x;
+            this.y = end.y;
+          }
+        } else if ( this._orientation == "vertical" ) {
+          if ( end.y - start.y > 0 ) {
+            if ( start.y < touch.newY <  end.y || start.y > touch.newY > end.y ) {
+              // New Y between start and end, calc X and use new Y
+              this.y = touch.newY;
+              this.x = this.y * ( end.x - start.x ) / ( end.y - start.y );
+            } else if ( touch.newX <= start.x < end.x || touch.newX >= start.x > end.x ) {
+              // New Y less than start, use start X/Y
+              this.x = start.x;
+              this.y = start.y;
+            } else if ( touch.newX >= end.x > start.x || touch.newX <= end.x < start.x ) {
+              // New Y greater than end, use end X/Y
+              this.x = end.x;
+              this.y = end.y;
+            }
+            
+          }
+          
+          // If switch travel is past the snap point, snap!
+          if ( Math.abs( this.y - start.y ) / Math.abs( end.y - start.y ) < this._snapMargin ) {
+            // To the beginning
+            this.x = start.x;
+            this.y = start.y;
+          } else if ( Math.abs( this.y - end.y ) / Math.abs( end.y - start.y ) < this._snapMargin ) {
+            // To the end
+            this.x = end.x;
+            this.y = end.y;
+          }
+        }
+      });
+      
+      return this;
+  },
+  
+  // snapMargin is the percentage from the beginning or end of switch travel
+  //   that the switch should "snap" to the minimum or maximum (on/off)
+  // opts = { start: { x: startX, y: startY }, end: { x: endX, y: endY }, snapMargin: 0.1 }
+  switchUI: function( opts ) {
+    this._start = opts.start;
+    this._end = opts.end;
+    this._snapMargin = opts.snapMargin;
+    
+    // Cache the orientation calculation
+    if ( Math.abs( this._start.x - this._end.x ) > Math.abs( this._start.y - this._end.y ) ) {
+      this._orientation = "horizontal";
+    } else {
+      this._orientation = "vertical";
+    }
+    
+    this.touchTarget
+      .attr( { x: this.x, y: this.y, z: Z_HUD_FG, w: this.w, height: this.h } )
+      .touchTarget();
+
+    return this;
+  },
+  
+  turnOn:  function() { this.state(true); return this; },
+  turnOff: function() { this.state(false); return this; },
+  isOn:  function() { return !!this.state(); },
+  isOff: function() { return !this.state(); },
+  
+  state: function( state ) {
+    if ( typeof state == "undefined" ) {
+      // Return state; is switch REALLY close to the end point?
+      return Math.abs( this.x - this._end.x ) + Math.abs( this.y - this._end.y ) < 0.01;
+    } else {
+      // Set the switch to start or end point ("on" or "off")
+      var point = state ? this._end : this._start;
+      
+      this.x = point.x;
+      this.y = point.y;
+    }
+  }
+  
+});
